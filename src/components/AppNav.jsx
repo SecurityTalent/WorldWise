@@ -1,10 +1,15 @@
 import React from 'react'
 import styles from "./AppNav.module.css"
+import { NavLink } from 'react-router'
 
 function AppNav() {
   return (
     <nav className={styles.nav}>
-        <h1>App Navigation Bar </h1>
+        <ul>
+          <li><NavLink to="cities">Cities</NavLink></li>
+          <li><NavLink to="countries">Countries</NavLink></li>
+          {/* <li><NavLink to="form">Form</NavLink></li> */}
+        </ul>
 
     </nav>
   )
