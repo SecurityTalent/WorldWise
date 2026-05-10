@@ -10,62 +10,39 @@ import { useEffect, useState } from 'react';
 import CountryList from './components/CountryList';
 import City from './components/City';
 import Form from './components/Form';
+import { CitiesProvider } from './contexts/CitiesContext';
 
 
 
 function App() {
 
-  const BASE_URL = "http://localhost:3001"
-
-  const [cities, setCities] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    async function fetchCities() {
-      setIsLoading(true);
-      try {
-        const res = await fetch(`${BASE_URL}/cities`);
-        const data = await res.json();
-        // console.log("DATA:", data);
-        setCities(data);
-      } catch (err) {
-        console.error("ERROR:", err);
-      }
-      finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchCities();
-  }, []);
-
-
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="product" element={<Product />} />
-          <Route path='pricing' element={<Pricing />} />
+      <CitiesProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="product" element={<Product />} />
+            <Route path='pricing' element={<Pricing />} />
 
-          <Route path="app" element={<AppLayout />}>
-            <Route index element={<Navigate replace to="cities" />} />
+            <Route path="app" element={<AppLayout />}>
+              <Route index element={<Navigate replace to="cities" />} />
 
-            <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
-            <Route path="cities/:id" element={<City />} />          {/* const { id } = useParams(); */}
-
-
-            <Route path="countries" element={<CountryList countries={cities} isLoading={isLoading} /> } />
-            <Route path="form" element={<Form />} />
-          </Route>
-
-          <Route path='*' element={<PageNotFound />} />
-
-        </Routes>
-      </BrowserRouter>
+              <Route path="cities" element={<CityList />} />
+              <Route path="cities/:id" element={<City />} />          {/* const { id } = useParams(); */}
 
 
-      {/* 18  */}
+              <Route path="countries" element={<CountryList />} />
+              <Route path="form" element={<Form />} />
+            </Route>
+
+            <Route path='*' element={<PageNotFound />} />
+
+          </Routes>
+        </BrowserRouter>
+      </CitiesProvider>
+
+      {/* 01:30:00  */}
 
 
     </>

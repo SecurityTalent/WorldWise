@@ -4,11 +4,14 @@ import Logo from './Logo'
 import AppNav from './AppNav'
 import Map from './Map'
 import { Outlet } from 'react-router'
+import { Link } from 'react-router'
 
 function Sidebar() {
     return (
         <div className={styles.sidebar}>
-            <Logo />
+            <Link to="/">
+                <Logo />
+            </Link>
             <AppNav />
 
 
