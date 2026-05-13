@@ -49,11 +49,52 @@ function CitiesProvider({ children }) {
         }
     }
 
+    async function createCity(newCity) {
+        try {
+            const res = await fetch(`${BASE_URL}/cities`,{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newCity)
+            });
+
+            const data = await res.json();
+            setCurrentCity(data);
+            
+            setCities(prevCities => [...prevCities, data]);
+
+        } catch (err) {
+            console.error("ERROR:", err);
+        }
+        finally {
+            setIsLoading(false)
+        }
+    }
 
 
-    
+    async function deleteCity(id) {
+        try {
+            await fetch(`${BASE_URL}/cities/${id}`,{
+                method: "DELETE",
+            });
+
+            setCities(prevCities => prevCities.filter(city => city.id !== id));
+
+        } catch (err) {
+            console.error("ERROR:", err);
+        }
+        finally {
+            setIsLoading(false)
+        }
+    }
+
+
+
+
+
     return (
-        <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity }}>
+        <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, createCity, deleteCity }}>
             {children}
         </CitiesContext.Provider>
     )
