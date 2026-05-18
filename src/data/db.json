@@ -13,16 +13,16 @@
       "id": "dHS6yNSSrc8"
     },
     {
-      "cityName": "Shortandy",
-      "country": "Kazakhstan",
-      "emoji": "🇰🇿",
-      "date": "2026-05-13T10:24:06.682Z",
-      "notes": "test 2",
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-05-18T07:36:50.113Z",
+      "notes": "",
       "position": {
-        "lat": "51.50874245880335",
-        "lng": "71.27929687500001"
+        "lat": "51.51493882813492",
+        "lng": "-0.092010498046875"
       },
-      "id": "kRmZg7pr9KQ"
+      "id": "1Io2WW86n90"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
